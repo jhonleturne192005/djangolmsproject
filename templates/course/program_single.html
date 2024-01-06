@@ -53,7 +53,6 @@
         <table class="table table-light table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th> Course Name </th>
                     <th> Course Code </th>
                     <th> Cr.Hr </th>
@@ -69,7 +68,6 @@
             <tbody>
                 {% for course in courses %}
                 <tr>
-                    <td>{{ forloop.counter }}.</td>
                     <td><a href="{{ course.get_absolute_url }}">
                             {{ course.title }}</a></td>
                     <td>{{ course.code }}</td>

@@ -34,12 +34,6 @@
         </button>
     </form>
 </div>
-
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button> -->
-
-<!-- Modal -->
 {% for program in programs %}
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -62,7 +56,6 @@
         <table class="table table-light">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Program Name</th>
                     <th>Summary</th>
                     {% if request.user.is_superuser %}
@@ -73,7 +66,6 @@
             <tbody>
                 {% for program in programs %}
                 <tr>
-                    <td>{{ forloop.counter }}.</td>
                     <td><a class="a-list" href="{{ program.get_absolute_url }}">
                             {{ program.title}}</a></td>
                     <td>{{ program.summary }} </td>
@@ -105,10 +97,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <td> <div class="update-delete">
-                    <a href="{% url 'edit_program' pk=program.pk %}" class="update"><i class="fas fa-edit"></i></a> 
-                    <a href="{% url 'program_delete' pk=program.pk %}" class="delete"><i class="fas fa-trash-alt"></i></a>
-                    </div> -->
                     </td>
                     {% endif %}
                 </tr>
