@@ -1,4 +1,5 @@
 from django.urls import path, include
+from .views import register_superuser
 from django.contrib.auth.views import (
     PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, 
     PasswordResetCompleteView, LoginView, LogoutView
@@ -39,5 +40,6 @@ urlpatterns = [
     path('ajax/validate-username/', validate_username, name='validate_username'),
 
     path('register/', register, name='register'),
+    path('register_superuser/', register_superuser, name='register_superuser'),
 
 ]

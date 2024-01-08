@@ -38,6 +38,33 @@ RELATION_SHIP  = (
     (OTHER, "Other"),
 )
 
+class SuperUser(AbstractUser):
+    # Campos adicionales para SuperUser
+    additional_info = models.CharField(max_length=100, blank=True)
+
+    # Sobrescribir campos para evitar conflictos de related_name
+    groups = models.ManyToManyField(
+        'auth.Group',
+        verbose_name='groups',
+        blank=True,
+        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+        related_name="superuser_groups",
+        related_query_name="superuser",
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        verbose_name='user permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_name="superuser_permissions",
+        related_query_name="superuser",
+    )
+
+    def __str__(self):
+        return self.username
+
+
+
 class UserManager(UserManager):
     def search(self, query=None):
         qs = self.get_queryset()
@@ -60,7 +87,7 @@ class User(AbstractUser):
     address = models.CharField(max_length=60, blank=True, null=True)
     picture = models.ImageField(upload_to='profile_pictures/%y/%m/%d/', default='default.png', null=True)
     email = models.EmailField(blank=True, null=True)
-
+    
     username_validator = ASCIIUsernameValidator()
 
     objects = UserManager()

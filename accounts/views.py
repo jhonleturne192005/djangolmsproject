@@ -12,13 +12,14 @@ from django.contrib.auth.forms import (
     UserCreationForm,
     UserChangeForm,
     PasswordChangeForm,
+    
 )
 
 from .decorators import lecturer_required, student_required, admin_required
 from course.models import Course
 from result.models import TakenCourse
 from app.models import Session, Semester
-from .forms import StaffAddForm, StudentAddForm, ProfileUpdateForm, ParentAddForm
+from .forms import StaffAddForm, StudentAddForm, ProfileUpdateForm, ParentAddForm, SuperuserCreationForm
 from .models import User, Student, Parent
 
 
@@ -32,15 +33,14 @@ def register(request):
     if request.method == "POST":
         form = StudentAddForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.is_superuser = True  # Establece al usuario como superusuario
-            user.is_staff = True      # Permite al usuario acceder al sitio de administración
-            user.save()
-            messages.success(request, "Account created successfully.")
+            form.save()
+            messages.success(request, f"Account created successfuly.")
         else:
-            messages.error(request, "Something is not correct, please fill all fields correctly.")
+            messages.error(
+                request, f"Somthing is not correct, please fill all fields correctly."
+            )
     else:
-        form = StudentAddForm()
+        form = StudentAddForm(request.POST)
     return render(request, "registration/register.html", {"form": form})
 
 
@@ -202,6 +202,18 @@ def change_password(request):
 
 
 # ########################################################
+@login_required
+@admin_required
+def register_superuser(request):
+    if request.method == 'POST':
+        form = SuperuserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Superusuario creado exitosamente.')
+            return redirect('login') 
+    else:
+        form = SuperuserCreationForm()
+    return render(request, 'registration/register_superuser.html', {'form': form})
 
 
 @login_required

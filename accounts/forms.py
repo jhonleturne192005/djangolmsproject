@@ -8,6 +8,55 @@ from course.models import Program
 # from .models import User, Student, LEVEL
 from .models import *
 
+class SuperuserCreationForm(UserCreationForm):
+    username = forms.CharField(
+        max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
+        label="Username", )
+
+    first_name = forms.CharField(
+        max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
+        label="First Name", )
+
+    last_name = forms.CharField(
+        max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
+        label="Last Name", )
+
+    address = forms.CharField(
+        max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
+        label="Address", )
+
+    phone = forms.CharField(
+        max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
+        label="Mobile No.", )
+
+    email = forms.CharField(
+        max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
+        label="Email", )
+
+    password1 = forms.CharField(
+        max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
+        label="Password", )
+
+    password2 = forms.CharField(
+        max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
+        label="Password Confirmation", )
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+
+    @transaction.atomic()
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_staff = True
+        user.is_superuser=True
+        user.first_name = self.cleaned_data.get('first_name')
+        user.last_name = self.cleaned_data.get('last_name')
+        user.phone = self.cleaned_data.get('phone')
+        user.address = self.cleaned_data.get('address')
+        user.email = self.cleaned_data.get('email')
+        if commit:
+            user.save()
+        return user
 
 class StaffAddForm(UserCreationForm):
     username = forms.CharField(
