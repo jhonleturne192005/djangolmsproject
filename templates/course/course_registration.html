@@ -24,17 +24,6 @@
 {% endif %}
 
 
-{% if is_calender_on == False %}
-
-<div class="alert bg-danger">
-    <h1 class="text-light text-center">Calender is off</h1>
-    <h5 class="text-light text-center">Check the university calender</h5>
-</div>
-
-{% else %}
-
-{% if not all_courses_are_registered %}
-
 <form action="{% url 'course_registration' %}" method="POST">{% csrf_token %}
     <div class="col-md-12 p-0 bg-white">
         <p class="form-title">
@@ -188,11 +177,10 @@
         </div>
     </div>
 </form>
-{% endif %}
+
 <br>
 <br>
 
-{% if not no_course_is_registered %}
 
 <a target="_blank" href="{% url 'course_registration_form' %}">
     <span title="Print Registration Form" class="btn btn-warning">
@@ -284,8 +272,5 @@
     </div>
 </div>
 
-{% endif %}
-
-{% endif %}
 
 {% endblock content %}

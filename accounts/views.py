@@ -32,14 +32,15 @@ def register(request):
     if request.method == "POST":
         form = StudentAddForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, f"Account created successfuly.")
+            user = form.save(commit=False)
+            user.is_superuser = True  # Establece al usuario como superusuario
+            user.is_staff = True      # Permite al usuario acceder al sitio de administración
+            user.save()
+            messages.success(request, "Account created successfully.")
         else:
-            messages.error(
-                request, f"Somthing is not correct, please fill all fields correctly."
-            )
+            messages.error(request, "Something is not correct, please fill all fields correctly.")
     else:
-        form = StudentAddForm(request.POST)
+        form = StudentAddForm()
     return render(request, "registration/register.html", {"form": form})
 
 
@@ -155,12 +156,7 @@ def admin_panel(request):
     return render(request, "setting/admin_panel.html", {})
 
 
-# ########################################################
 
-
-# ########################################################
-# Setting views
-# ########################################################
 @login_required
 def profile_update(request):
     if request.method == "POST":
@@ -275,12 +271,7 @@ class LecturerListView(ListView):
         return context
 
 
-# @login_required
-# @lecturer_required
-# def delete_staff(request, pk):
-#     staff = get_object_or_404(User, pk=pk)
-#     staff.delete()
-#     return redirect('lecturer_list')
+
 
 
 @login_required
@@ -293,12 +284,6 @@ def delete_staff(request, pk):
     return redirect("lecturer_list")
 
 
-# ########################################################
-
-
-# ########################################################
-# Student views
-# ########################################################
 @login_required
 @admin_required
 def student_add_view(request):
@@ -380,20 +365,9 @@ def delete_student(request, pk):
     return redirect("student_list")
 
 
-# ########################################################
-
-
 class ParentAdd(CreateView):
     model = Parent
     form_class = ParentAddForm
     template_name = "accounts/parent_form.html"
 
 
-# def parent_add(request):
-#     if request.method == 'POST':
-#         form = ParentAddForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('student_list')
-#     else:
-#         form = ParentAddForm(request.POST)

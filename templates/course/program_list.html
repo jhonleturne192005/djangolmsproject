@@ -1,19 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }}{% endblock title %}
+{% block title %}{{ title }} | Learning management system{% endblock title %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Programs</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> Programs</div>
 
-<div class="d-flex justify-content-between align-items-center"> <!-- Flex container -->
-    <div class="title-1"><i class="fas fa-book-open"></i>Program List</div>
-
-    {% if request.user.is_superuser %}
-    <a class="btn btn-primary rounded-pill" href="{% url 'add_program' %}">
-        <i class="fas fa-plus"></i> Add Program
-    </a>
-    {% endif %}
+{% if request.user.is_superuser %}
+<div class="manage-wrap">
+    <a class="btn btn-primary" href="{% url 'add_program' %}"><i class="fas fa-plus"></i>Add Program</a>
 </div>
-<div class="title-line"></div>
+{% endif %}
+
+<div class="title-1"><i class="fas fa-book-open"></i>Program List</div>
 
 {% if messages %}
 {% for message in messages %}
@@ -38,6 +35,7 @@
         </button>
     </form>
 </div>
+
 {% for program in programs %}
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -60,6 +58,7 @@
         <table class="table table-light">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Program Name</th>
                     <th>Summary</th>
                     {% if request.user.is_superuser %}
@@ -70,6 +69,7 @@
             <tbody>
                 {% for program in programs %}
                 <tr>
+                    <td>{{ forloop.counter }}.</td>
                     <td><a class="a-list" href="{{ program.get_absolute_url }}">
                             {{ program.title}}</a></td>
                     <td>{{ program.summary }} </td>
@@ -101,8 +101,32 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- <td> <div class="update-delete">
+                    <a href="{% url 'edit_program' pk=program.pk %}" class="update"><i class="fas fa-edit"></i></a> 
+                    <a href="{% url 'program_delete' pk=program.pk %}" class="delete"><i class="fas fa-trash-alt"></i></a>
+                    </div> -->
                     </td>
                     {% endif %}
+                </tr>
+                {% empty %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>
+                  <span class="text-danger">
+                    No program.
+                    {% if request.user.is_superuser %}
+                    <a href="{% url 'add_program' %}">
+                    <i class="primary" style="font-size: 22px;">
+                       Add program now.
+                    </i>
+                    {% endif %}
+                    </a>
+                  </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -49,6 +49,7 @@ DJANGO_APPS = [
 THIRED_PARTY_APPS = [
     "crispy_forms",
     "rest_framework",
+    "django_filters",
 ]
 
 # Custom apps
@@ -119,11 +120,11 @@ ASGI_APPLICATION = "SMS.asgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": env("DB_NAME"),
-        "USER": env("DB_USER"),
-        "PASSWORD": env("DB_PASSWORD"),
-        "HOST": env("DB_HOST"),
-        "PORT": env("DB_PORT"),
+        "NAME": "DjangoLMS",
+        "USER": "postgres",
+        "PASSWORD": "12345",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
