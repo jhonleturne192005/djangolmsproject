@@ -41,7 +41,7 @@ SEMESTER = (
 
 class ProgramManager(models.Manager):
     def search(self, query=None):
-        qs = self.get_queryset().order_by('-id')
+        qs = self.get_queryset()
         if query is not None:
             or_lookup = (Q(title__icontains=query) | 
                          Q(summary__icontains=query)
@@ -53,6 +53,7 @@ class ProgramManager(models.Manager):
 class Program(models.Model):
     title = models.CharField(max_length=150, unique=True)
     summary = models.TextField(null=True, blank=True)
+
     objects = ProgramManager()
 
     def __str__(self):
@@ -61,12 +62,10 @@ class Program(models.Model):
     def get_absolute_url(self):
         return reverse('program_detail', kwargs={'pk': self.pk})
 
-    class Meta:
-        ordering = ['-id']
 
 class CourseManager(models.Manager):
     def search(self, query=None):
-        qs = self.get_queryset().order_by('-id')
+        qs = self.get_queryset()
         if query is not None:
             or_lookup = (Q(title__icontains=query) | 
                          Q(summary__icontains=query)| 
@@ -97,9 +96,6 @@ class Course(models.Model):
     def get_absolute_url(self):
         return reverse('course_detail', kwargs={'slug': self.slug})
     
-    class Meta:
-       ordering = ['-id']
- 
     @property
     def is_current_semester(self):
         from app.models import Semester
@@ -109,7 +105,7 @@ class Course(models.Model):
             return True
         else:
             return False
-   
+
 
 def course_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
@@ -128,7 +124,6 @@ class CourseAllocation(models.Model):
 
     def get_absolute_url(self):
         return reverse('edit_allocated_course', kwargs={'pk': self.pk})
-    
 
 
 class Upload(models.Model):
