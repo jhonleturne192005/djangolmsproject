@@ -39,7 +39,6 @@ urlpatterns = [
 
     path('ajax/validate-username/', validate_username, name='validate_username'),
 
-    path('register/', register, name='register'),
-    path('register_superuser/', register_superuser, name='register_superuser'),
+    path('register/', register_superuser, name='register'),
 
 ]

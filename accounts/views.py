@@ -213,7 +213,7 @@ def register_superuser(request):
             return redirect('login') 
     else:
         form = SuperuserCreationForm()
-    return render(request, 'registration/register_superuser.html', {'form': form})
+    return render(request, 'registration/register.html', {'form': form})
 
 
 @login_required
