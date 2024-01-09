@@ -28,8 +28,7 @@
 
 <div class="content-center">
     <form class="search-form mx-auto" action="" method="GET">{% csrf_token %}
-        <input hx-post="{% url 'programs' %}" hx-trigger="keyup" hx-target="#program_list"
-        class="au-input" type="text" name="program_filter" placeholder="Program name"
+        <input class="au-input" type="text" name="program_filter" placeholder="Program name"
             value="{{ request.GET.program_filter }}" />
         <button class="btn btn-light" type="submit">
             <i class="fas fa-search"></i> Filter
@@ -37,14 +36,6 @@
     </form>
 </div>
 
-<<<<<<< HEAD
-=======
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button> -->
-
-<!-- Modal -->
->>>>>>> parent of c7a4a78 (Oden descendente)
 {% for program in programs %}
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
