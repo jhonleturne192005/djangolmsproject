@@ -12,13 +12,14 @@ from django.contrib.auth.forms import (
     UserCreationForm,
     UserChangeForm,
     PasswordChangeForm,
+    
 )
 
 from .decorators import lecturer_required, student_required, admin_required
 from course.models import Course
 from result.models import TakenCourse
 from app.models import Session, Semester
-from .forms import StaffAddForm, StudentAddForm, ProfileUpdateForm, ParentAddForm
+from .forms import StaffAddForm, StudentAddForm, ProfileUpdateForm, ParentAddForm, SuperuserCreationForm
 from .models import User, Student, Parent
 
 
@@ -155,12 +156,7 @@ def admin_panel(request):
     return render(request, "setting/admin_panel.html", {})
 
 
-# ########################################################
 
-
-# ########################################################
-# Setting views
-# ########################################################
 @login_required
 def profile_update(request):
     if request.method == "POST":
@@ -206,6 +202,18 @@ def change_password(request):
 
 
 # ########################################################
+@login_required
+@admin_required
+def register_superuser(request):
+    if request.method == 'POST':
+        form = SuperuserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Superusuario creado exitosamente.')
+            return redirect('login') 
+    else:
+        form = SuperuserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
 
 
 @login_required
@@ -307,12 +315,7 @@ def search_lecturer(request):
 
 
 
-# @login_required
-# @lecturer_required
-# def delete_staff(request, pk):
-#     staff = get_object_or_404(User, pk=pk)
-#     staff.delete()
-#     return redirect('lecturer_list')
+
 
 
 @login_required
@@ -325,12 +328,6 @@ def delete_staff(request, pk):
     return redirect("lecturer_list")
 
 
-# ########################################################
-
-
-# ########################################################
-# Student views
-# ########################################################
 @login_required
 @admin_required
 def student_add_view(request):
@@ -412,20 +409,9 @@ def delete_student(request, pk):
     return redirect("student_list")
 
 
-# ########################################################
-
-
 class ParentAdd(CreateView):
     model = Parent
     form_class = ParentAddForm
     template_name = "accounts/parent_form.html"
 
 
-# def parent_add(request):
-#     if request.method == 'POST':
-#         form = ParentAddForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('student_list')
-#     else:
-#         form = ParentAddForm(request.POST)

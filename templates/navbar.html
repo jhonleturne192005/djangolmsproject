@@ -1,3 +1,4 @@
+{% load i18n %} 
 <div id="top-navbar">
 	<div class="container">
 		<div class="nav-wrapper">
@@ -36,6 +37,14 @@
 
 					<a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i>Profile</a>
 					<a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="fas fa-cogs"></i>Setting</a>
+					<form action="{% url 'set_language' %}" method="post">
+						{% csrf_token %}
+						<input name="next" type="hidden" value="{{ request.path }}">
+						<button type="submit" name="language" value="es" class="dropdown-item">
+							<i class="fas fa-globe"></i> Español
+						</button>
+					</form>
+					
 					<hr>
 					<div style="display: flex; justify-content: center; align-items: center;">
 						<a class="btn btn-secondary" href="{% url 'logout' %}">

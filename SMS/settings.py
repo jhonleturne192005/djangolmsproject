@@ -49,6 +49,7 @@ DJANGO_APPS = [
 THIRED_PARTY_APPS = [
     "crispy_forms",
     "rest_framework",
+    "django_filters",
 ]
 
 # Custom apps
@@ -73,6 +74,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "SMS.urls"
@@ -118,11 +120,11 @@ ASGI_APPLICATION = "SMS.asgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": env("DB_NAME"),
-        "USER": env("DB_USER"),
-        "PASSWORD": env("DB_PASSWORD"),
-        "HOST": env("DB_HOST"),
-        "PORT": env("DB_PORT"),
+        "NAME": "DjangoLMS",
+        "USER": "postgres",
+        "PASSWORD": "12345",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
@@ -150,8 +152,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
-
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Español'),
+]
 LANGUAGE_CODE = "en-us"
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 TIME_ZONE = "UTC"
 
