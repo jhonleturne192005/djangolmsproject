@@ -9,7 +9,7 @@ from .views import (
         LecturerListView, StudentListView, 
         staff_add_view, edit_staff, 
         delete_staff, student_add_view, 
-        edit_student, delete_student, ParentAdd, validate_username, register
+        edit_student, delete_student, ParentAdd, validate_username, register,search_lecturer
     )
 from .forms import EmailValidationOnForgotPassword
 
@@ -25,6 +25,7 @@ urlpatterns = [
     path('change_password/', change_password, name='change_password'),
 
     path('lecturers/', LecturerListView.as_view(), name='lecturer_list'),
+    path('lecturers_search/', search_lecturer,name='lecturer_search'),
     path('lecturer/add/', staff_add_view, name='add_lecturer'),
     path('staff/<int:pk>/edit/', edit_staff, name='staff_edit'),
     path('lecturers/<int:pk>/delete/', delete_staff, name='lecturer_delete'),

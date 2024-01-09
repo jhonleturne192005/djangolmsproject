@@ -26,15 +26,18 @@ from .models import Program, Course, CourseAllocation, Upload, UploadVideo
 def program_view(request):
     programs = Program.objects.all()
 
-    program_filter = request.GET.get('program_filter')
-    if program_filter:
-        programs = Program.objects.filter(title__icontains=program_filter)
-
-    return render(request, 'course/program_list.html', {
-        'title': "Programs | DjangoSMS",
-        'programs': programs,
-    })
-
+    if request.method == 'POST':
+        program_filter = request.POST.get('program_filter')
+        print(program_filter)
+        if program_filter:
+            programs = Program.objects.filter(title__icontains=program_filter)
+        return render(request, 'course/program_list_search.html',{'programs': programs})
+    else:
+        return render(request, 'course/program_list.html', {
+            'title': "Programs | DjangoSMS",
+            'programs': programs,
+        })
+    
 
 @login_required
 @lecturer_required

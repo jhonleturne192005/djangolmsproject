@@ -5,6 +5,13 @@
 		background-size: cover;
 		background-position: top center;
 	}
+
+	.abbr{
+		border-bottom: none !important;
+		cursor: inherit !important;
+		text-decoration: none !important;
+	}
+
 </style>
 
 <div id="side-nav">
@@ -41,34 +48,34 @@
 				<a href="{% url 'home' %}"><i class="fas fa-home"></i>Home</a>
 			</li>
 			<li class="{% if request.path == prof %}active{% endif %}">
-				<a href="{% url 'profile' %}"><i class="fas fa-user"></i>Profile</a>
+				<a href="{% url 'profile' %}"><i class="fas fa-user"></i><abbr class="abbr" title="Perfil del usuario">Profile</abbr></a>
 			</li>
 
 			{% if request.user.is_superuser %}
 			<li class="{% if request.path == admin_p %}active{% endif %}">
-				<a href="{% url 'admin_panel' %}"><i class="fas fa-user-tie"></i>Admin Panel</a>
+				<a href="{% url 'admin_panel' %}"><i class="fas fa-user-tie"></i><abbr class="abbr" title="Perfil del usuario"><abbr class="abbr" title="Panel de administrador">Admin</abbr></abbr></a>
 			</li>
 			<li class="{% if request.path == lec %}active{% endif %}">
-				<a href="{% url 'lecturer_list' %}"><i class="fas fa-chalkboard-teacher"></i>Lecturers</a>
+				<a href="{% url 'lecturer_list' %}"><i class="fas fa-chalkboard-teacher"></i><abbr class="abbr" title="Panel de administrador de profesores">Lecturers</abbr></abbr></a>
 			</li>
 			<li class="{% if request.path == stu %}active{% endif %}">
-				<a href="{% url 'student_list' %}"><i class="fas fa-user-graduate"></i>Students</a>
+				<a href="{% url 'student_list' %}"><i class="fas fa-user-graduate"></i><abbr class="abbr" title="Panel de estudiantes para registro o evaluaciones">Students</abbr></abbr></a>
 			</li>
 			{% endif %}
 
 			{% if request.user.is_lecturer or request.user.is_student %}
 			<li class="{% if request.path == ucl %}active{% endif %}">
-				<a href="{% url 'user_course_list' %}"><i class="fas fa-book"></i>My Courses</a>
+				<a href="{% url 'user_course_list' %}"><i class="fas fa-book"></i><abbr class="abbr" title="Cursos para estudiantes">My Courses</abbr></a>
 			</li>
 			{% endif %}
 
 			<li class="{% if request.path == pro %}active{% endif %}">
-				<a href="{% url 'programs' %}"><i class="fas fa-book-open"></i>Programs & Courses</a>
+				<a href="{% url 'programs' %}"><i class="fas fa-book-open"></i><abbr class="abbr" title="Programas y cursos para estudiantes">Programs & Courses</abbr></a>
 			</li>
 
 			{% if request.user.is_superuser or request.user.is_lecturer %}
 			<li class="{% if request.path == qce %}active{% endif %}">
-				<a href="{% url 'quiz_marking' %}"><i class="fas fa-check-double"></i>Complete Exams</a>
+				<a href="{% url 'quiz_marking' %}"><i class="fas fa-check-double"></i><abbr class="abbr" title="Examenes completados por estudiantes">Complete Exams</abbr></a>
 			</li>
 			{% endif %}
 

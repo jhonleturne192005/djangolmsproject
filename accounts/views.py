@@ -265,14 +265,46 @@ def edit_staff(request, pk):
 
 @method_decorator([login_required, admin_required], name="dispatch")
 class LecturerListView(ListView):
-    queryset = User.objects.filter(is_lecturer=True)
     template_name = "accounts/lecturer_list.html"
     paginate_by = 10  # if pagination is desired
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Lecturers | DjangoSMS"
-        return context
+    def get_queryset(self):
+        queryset = User.objects.filter(is_lecturer=True)
+        return queryset
+    
+
+def search_lecturer(request):
+    
+    #queryset = User.objects.filter(is_lecturer=True,email=email,username=id_no,first_name=name)
+    print(request.method)
+    if request.method == "POST":
+        print(request.POST.get('id_no'))
+        print(request.POST.get('name'))
+        print(request.POST.get('email'))
+        #datos
+        id_no=request.POST.get('id_no')
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+
+        if id_no:
+            queryset = User.objects.filter(is_lecturer=True,username=id_no)
+        elif email:
+            queryset = User.objects.filter(is_lecturer=True,email=email)
+        elif name:
+            queryset = User.objects.filter(is_lecturer=True,first_name=name)
+        else:
+            queryset = User.objects.filter(is_lecturer=True)
+        print("holaaaaaaa")
+
+    return render(
+        request,
+        "accounts/lecturer_list_search.html",
+        {
+            "title": "Edit Lecturer | DjangoSMS",
+            "object_list": queryset,
+        },
+    )
+
 
 
 # @login_required

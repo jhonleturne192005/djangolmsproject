@@ -1,0 +1,63 @@
+<div class="table-responsive table-shadow table-light table-striped m-0 mt-5" id="lecturer_list">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th> ID No. </th>
+                <th> Full Name </th>
+                <th> Email </th>
+                <th> Mob No. </th>
+                <th> Address/city </th>
+                <th> Last login </th>
+                {% if request.user.is_superuser %}
+                <th> Action </th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for lecturer in object_list %}
+            <tr>
+                <td> {{ forloop.counter }}.</td>
+                <td>{{ lecturer.username }}</td>
+                <td><a href="{% url 'profile_single' lecturer.id %}">{{ lecturer.get_full_name }}</a></td>
+                <td>{{ lecturer.email }}</td>
+                <td>{{ lecturer.phone }}</td>
+                <td>{{ lecturer.address }}</td>
+                <td>{{ lecturer.last_login }}</td>
+                {% if request.user.is_superuser %}
+                <td> 
+                    <div class="update-delete">
+                        <a href="{% url 'staff_edit' pk=lecturer.pk %}" class="update"><i class="fas fa-edit"></i></a>
+                        <form action="{% url 'lecturer_delete' pk=lecturer.pk %}">{% csrf_token %}
+                            <button type="submit" class="btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                </td>
+                {% endif %}
+                
+                {% empty %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>
+                  <span class="text-danger">
+                    <i class="far fa-frown"></i>No Lecturer(s).
+                    {% if request.user.is_superuser %}
+                    <a href="{% url 'add_lecturer' %}">
+                    <i class="primary" style="font-size: 22px;">
+                       Add Lecturer Now.
+                    </i>
+                    {% endif %}
+                    </a>
+                  </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

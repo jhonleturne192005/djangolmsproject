@@ -27,7 +27,7 @@ class StaffAddForm(UserCreationForm):
         label="Address", )
 
     phone = forms.CharField(
-        max_length=30, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
+        max_length=10, widget=forms.TextInput(attrs={'type': 'text', 'class': 'form-control', }),
         label="Mobile No.", )
 
     email = forms.CharField(

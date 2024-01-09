@@ -3,12 +3,15 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
+
 {% block content %}
 <div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> 
     <a href="{% url 'lecturer_list' %}" class="primary1">Lecturers</a> <i>&rsaquo;</i> Add</div>
 <br>
 <div class="title-1"><i class="fas fa-chalkboard-teacher"></i>Lecturer Add Form</div>
 <div class="title-line"></div><br>
+
+
 
 {% if messages %}
     {% for message in messages %}
@@ -69,10 +72,18 @@
                         <b>{{ form.email.label }}</b>{{ form.email }}
                         <span class="danger">{{ form.email.errors }}</span>
                     </div>
+
                     <div class="form-group">
-                        <b>{{ form.address.label }}</b>{{ form.address }}
+                        <b>{{ form.address.label }}</b>
+                        <div class="input-group mb-3">
+                            {{ form.address }}
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-secondary" type="button"><box-icon name='location-plus' ></box-icon></button>
+                              </div>
+                        </div>
                         <span class="danger">{{ form.address.errors }}</span>
                     </div>
+
                     <div class="form-group">
                         <b>{{ form.phone.label }}</b>{{ form.phone }}
                         <span class="danger">{{ form.phone.errors }}</span>
@@ -81,7 +92,31 @@
             </div>
         </div>
     </div>
+
     <center><input class="btn btn-outline-primary" type="submit" value="Save"></center>
+
 </form>
+
+
+  <!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1000px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">             
+            <div  style="height: 500px; max-width: 100%;" id="mapa_maps"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <script type="text/javascript" src="{% static 'js/mapa.js' %}"></script>
 
 {% endblock content %}
