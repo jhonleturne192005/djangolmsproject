@@ -80,10 +80,11 @@
                     <td><a class="a-list" href="{{ program.get_absolute_url }}">
                             {{ program.title}}</a></td>
                     <td>{{ program.summary }} </td>
-                    {% if request.user.is_superuser %}
                     <td>
                         <a class="btn btn-primary rounded-pill text-light" href="{{ program.get_absolute_url }}">Cursos</a>
                     </td>
+                    {% if request.user.is_superuser %}
+                    
                     <td>
                         <div class="update-delete">
                             <a href="{% url 'edit_program' pk=program.pk %}" class="update"><i
