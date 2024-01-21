@@ -1,44 +1,31 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <title>{% block title %}DjangoSMS{% endblock title %}</title>
-
-    <!-- <link href="{% static 'css/font-face.css' %}" rel="stylesheet" media="all"> -->
-
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"> -->
-    <!-- <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}"> -->
-
     <link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
-
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/black.css' %}"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
-    <!-- <script src="https://js.stripe.com/v3/"></script> -->
     {% block header %}{% endblock %}
 </head>
 
 <body>
     {% include 'aside.html' %}
-    <div id="main">
-        {% include 'navbar.html' %}
+    <div id="main" class="shadow-sm"> <!-- Aplicando sombra al contenedor principal -->
+        {% include 'navbar.html' %} <!-- Puedes aplicar clases de Bootstrap aquí también -->
 
-        <div class="container-fluid" id="main-content">
+        <div class="container-fluid rounded" id="main-content"> <!-- Bordes redondeados y sombra para main-content -->
             {% block content %}{% endblock content %}
         </div>
-
     </div>
 
     <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
     <script>
@@ -59,5 +46,4 @@
     {% block js %}
     {% endblock js %}
 </body>
-
 </html>

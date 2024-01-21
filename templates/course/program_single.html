@@ -8,25 +8,30 @@
     <a href="{% url 'programs' %}" class="primary1">Programs</a> {{ program.title }}
 </div>
 
-{% if request.user.is_superuser %}
-<div class="manage-wrap">
-    <a class="btn btn-sm btn-primary" href="{% url 'course_add' pk=program.pk %}"><i class="fas fa-plus"></i>Add
-        Course</a>
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <div class="title-1">{{ program.title }}</div>
+
+    {% if request.user.is_superuser %}
+    <div>
+        <a class="btn btn-sm btn-primary rounded-pill" href="{% url 'course_add' pk=program.pk %}">
+            <i class="fas fa-plus"></i> Add Course
+        </a>
+    </div>
+    {% endif %}
 </div>
-{% endif %}
 
 
 {% if program %}
-<div class="title-1">{{ program.title }}</div>
 {% if program.summary %}
-<p class="program-description">{{ program.summary }}</p>
+<p class="program-description rounded shadow p-3">{{ program.summary }}</p>
 {% endif %}
 {% endif %}
 
 {% if messages %}
 {% for message in messages %}
 {% if message.tags == 'error' %}
-<div class="alert alert-danger">
+<div class="alert alert-{{ message.tags }} rounded shadow-sm">
     <i class="fas fa-exclamation-circle"></i>{{ message }}
 </div>
 {% else %}
@@ -37,12 +42,15 @@
 {% endfor %}
 {% endif %}
 
-<div class="content-center">
+<div class="content-center rounded shadow-sm p-3 mb-5">
     <form class="search-form" action="." method="GET">
-        <input class="au-input" type="text" name="name" placeholder="Course Name" value="{{ request.GET.name }}" />
-        <input class="au-input" type="text" name="code" placeholder="Course Code" value="{{ request.GET.code }}" />
-        <input class="au-input" type="number" name="year" placeholder="Course Year" value="{{ request.GET.year }}" />
-        <button class="btn btn-light" type="submit">
+        <div class="form-row">
+            <input class="au-input" type="text" name="name" placeholder="Course Name" value="{{ request.GET.name }}" />
+            <input class="au-input" type="text" name="code" placeholder="Course Code" value="{{ request.GET.code }}" />
+            <input class="au-input" type="number" name="year" placeholder="Course Year" value="{{ request.GET.year }}" />    
+        </div>
+        
+        <button class="btn btn-primary rounded-pill" type="submit">
             <i class="fas fa-search"></i> filter
         </button>
     </form>
@@ -50,7 +58,7 @@
 
 <div class="table-responsive p-0 px-2 mt-5">
     <div class="table-shadow">
-        <table class="table table-light table-striped">
+        <table class="table table-light table-striped rounded shadow-sm">
             <thead>
                 <tr>
                     <th>#</th>
@@ -63,6 +71,7 @@
                     <th> Current Semester </th>
                     {% if request.user.is_superuser %}
                     <th>Action</th>
+                    <th>Go to Course</th>
                     {% endif %}
                 </tr>
             </thead>
@@ -101,6 +110,11 @@
                             </div>
                         </div>
                     </td>
+                    <td>
+                        <a class="btn btn-primary rounded-pill text-light" href="{{ course.get_absolute_url }}">
+                            <i class="fas fa-graduation-cap"></i> Ir al Curso
+                        </a>
+                    </td>
                     {% endif %}
                 </tr>
                 {% endfor %}
@@ -111,17 +125,20 @@
 
 {% if courses.paginator.page_range|length > 1 %}
 <div class="content-center">
-    <div class="pagination">
-        <a href="?page=1">&laquo;</a>
-        {% for i in courses.paginator.page_range %}
-        {% if i == courses.number %}
-        <a class="pagination-active" href="?page={{ i }}"><b>{{ i }}</b></a>
-        {% else %}
-        <a href="?page={{ i }}">{{ i }}</a>
-        {% endif %}
-        {% endfor %}
-        <a href="?page={{ courses.paginator.num_pages }}">&raquo;</a>
-    </div>
+    <nav aria-label="Page navigation">
+        <div class="pagination justify-content-center">
+            <a href="?page=1">&laquo;</a>
+            {% for i in courses.paginator.page_range %}
+            {% if i == courses.number %}
+            <a class="pagination-active" href="?page={{ i }}"><b>{{ i }}</b></a>
+            {% else %}
+            <a href="?page={{ i }}">{{ i }}</a>
+            {% endif %}
+            {% endfor %}
+            <a href="?page={{ courses.paginator.num_pages }}">&raquo;</a>
+        </div>
+    </nav>
+    
 </div>
 {% endif %}
 
