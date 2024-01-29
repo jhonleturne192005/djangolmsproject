@@ -118,7 +118,7 @@ class StudentAddForm(UserCreationForm):
                 'id': 'username_id'
             }
         ),
-        label="Username",
+        label="Usuario",
     )
     address = forms.CharField(
         max_length=30,
@@ -191,16 +191,11 @@ class StudentAddForm(UserCreationForm):
 
     password1 = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
-        label="Contrasenia*", )
+        label="Contraseña*", )
 
     password2 = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
-        label="Confirmar contrasenia*", )
-
-    # def validate_email(self):
-    #     email = self.cleaned_data['email']
-    #     if User.objects.filter(email__iexact=email, is_active=True).exists():
-    #         raise forms.ValidationError("Email has taken, try another email address. ")
+        label="Confirmar contraseña*", )
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -339,16 +334,11 @@ class ParentAddForm(UserCreationForm):
 
     password1 = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
-        label="Contrasenia", )
+        label="Contraseña*", )
 
     password2 = forms.CharField(
         max_length=30, widget=forms.TextInput(attrs={'type': 'password', 'class': 'form-control', }),
-        label="Confirmar contrasenia", )
-
-    # def validate_email(self):
-    #     email = self.cleaned_data['email']
-    #     if User.objects.filter(email__iexact=email, is_active=True).exists():
-    #         raise forms.ValidationError("Email has taken, try another email address. ")
+        label="Confirmar contraseña*", )
 
     class Meta(UserCreationForm.Meta):
         model = User
