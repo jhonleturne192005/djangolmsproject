@@ -4,11 +4,12 @@
 {% load static %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Admin Panel</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Inicio</a> <i>&rsaquo;</i> Panel de administrador</div>
 <!-- <br> -->
-<div class="title-1"><i class="fas fa-user-tie"></i>Admin Panel</div>
+<div class="title-1"><i class="fas fa-user-tie"></i>Panel de administrador</div>
 <div class="d-flex justify-content-end mb-3">
-    <a href="{% url 'register' %}" class="btn btn-primary rounded-pill">Add New Admin</a>
+   
+    <a href="{% url 'register' %}" class="btn btn-primary rounded-pill"> <i class="fas fa-user-plus"></i> Agregar nuevo administrador</a>
 </div>
 <br>
 <br>
@@ -31,57 +32,77 @@
         <div class="col-md-6 mb-4">
             <div class="card rounded-lg shadow">
                 <div class="card_body p-3">
-                    <h5 class="card_title"> Manage Lecturers</h5>
-                    <p class="card-text">CRUD (Create, Retrieve, Update & Delete) lecturers</p>
-                    <a href="{% url 'lecturer_list' %}" class="btn btn-secondary rounded-pill">Manage &raquo;</a>
+                    <h5 class="card_title"> Administrador de instructores</h5>
+                    <p class="card-text">Creacion, visualizacion, edicion y eliminacion de Instructores</p>
+                    <a href="{% url 'lecturer_list' %}" class="btn btn-success rounded-pill">Instructores &raquo;</a>
                 </div>
             </div>
             <div class="mb-4"></div>
             <div class="card rounded-lg shadow">
                 <div class="card_body p-3">
-                    <h5 class="card_title"> Manage Students</h5>
-                    <p class="card-text">CRUD (Create, Retriev, Update & Delete) students</p>
-                    <a href="{% url 'student_list' %}" class="btn btn-secondary rounded-pill">Students &raquo;</a>
+                    <h5 class="card_title"> Administrador de Estudiantes</h5>
+                    <p class="card-text">Creacion, visualizacion, edicion y eliminacion de Estudiantes</p>
+                    <a href="{% url 'student_list' %}" class="btn btn-success rounded-pill">Estudiantes &raquo;</a>
                 </div>
             </div>
             <div class="mb-4"></div>
             <div class="card rounded-lg shadow">
                 <div class="card_body p-3">
-                    <h5 class="card_title"> Manage Sessions</h5>
-                    <p class="card-text">CRUD (Create, Retriev, Update & Delete) Sessions</p>
-                    <a href="{% url 'session_list' %}" class="btn btn-secondary rounded-pill">Sessions &raquo;</a>
+                    <h5 class="card_title"> Administrador de sesiones</h5>
+                    <p class="card-text">Creacion, visualizacion, edicion y eliminacion de Sesisones</p>
+                    <a href="{% url 'session_list' %}" class="btn btn-success rounded-pill">Sesisones &raquo;</a>
                 </div>
             </div>
             <div class="mb-4"></div>
                 <div class="card rounded-lg shadow">
                 <div class="card_body p-3">
-                    <h5 class="card_title"> Manage Semester</h5>
-                    <p class="card-text">CRUD (Create, Retriev, Update & Delete) Semester</p>
-                    <a href="{% url 'semester_list' %}" class="btn btn-secondary rounded-pill">Semester &raquo;</a>
+                    <h5 class="card_title"> Administrador de semestres</h5>
+                    <p class="card-text">Creacion, visualizacion, edicion y eliminacion de Semestres</p>
+                    <a href="{% url 'semester_list' %}" class="btn btn-success rounded-pill">Semestres &raquo;</a>
                 </div>   
             </div>
                 
                 
-                              
         </div>
-        <div class="col-md-6 p-5 bg-gradient-light">
-            Course Add & Drop
-            <label class="switch switch-text switch-success switch-pill" style="float: right;">
-              <input type="checkbox" class="switch-input" checked="true">
-              <span data-on="On" data-off="Off" class="switch-label"></span>
-              <span class="switch-handle"></span>
-            </label>
-            <p><span>&LongRightArrow;</span> Switch 
-                <i class="info-text bg-success">ON</i> or <i class="info-text bg-danger">OFF</i>
-            </p><hr>
-
-            Manage<a class="btn btn-sm btn-secondary" href="{% url 'programs' %}"> Programs & Courses &raquo;</a>
-            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) programs</p>
-            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) courses</p><hr>
-            Manage<a class="btn btn-sm btn-secondary" href="{% url 'course_allocation_view' %}"> Course Allocations &raquo;</a>
-            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) course allocations</p><hr>
-            Manage<a class="btn btn-sm btn-secondary" href="{% url 'home' %}"> News & Events &raquo;</a>
-            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) News & Events</p>
+        <div class="col-md-6 mb-4">
+            <div class="card rounded-lg shadow">
+                <div class="card_body p-3">
+                    <h5 class="card_title"> Agregar y eliminar cursos</h5>
+                    <label class="switch switch-text switch-success switch-pill" style="float: right;">
+                        <input type="checkbox" class="switch-input" checked="true">
+                        <span data-on="On" data-off="Off" class="switch-label"></span>
+                        <span class="switch-handle"></span>
+                      </label>
+                      <p><span>&LongRightArrow;</span> Marcador 
+                        <i class="info-text bg-success">ON</i> or <i class="info-text bg-danger">OFF</i>
+                    </p><hr>
+                </div>
+            </div>
+            <div class="mb-4"></div>
+            <div class="card rounded-lg shadow">
+                <div class="card_body p-3">
+                    <h5 class="card_title"> Programas y cursos</h5>
+                    <p class="card-text">Cracion, visualizacion, edicion y eliminacion de programas y cursos</p>
+                    <a class="btn btn-success rounded-pill" href="{% url 'programs' %}"> Programas y cursos &raquo;</a>
+                </div>
+            </div>
+            <div class="mb-4"></div>
+            <div class="card rounded-lg shadow">
+                <div class="card_body p-3">
+                    <h5 class="card_title"> Asignacion de cursos</h5>
+                    <p class="card-text">Cracion, visualizacion, edicion y eliminacion de cursos asignados</p>
+                    <a class="btn btn-success rounded-pill" href="{% url 'course_allocation_view' %}"> Asignacion de cursos &raquo;</a>
+                </div>
+            </div>
+            <div class="mb-4"></div>
+            <div class="card rounded-lg shadow">
+                <div class="card_body p-3">
+                    <h5 class="card_title"> Noticias y eventos</h5>
+                    <p class="card-text">Cracion, visualizacion, edicion y eliminacion de Noticias y eventos registrados</p>
+                    <a class="btn btn-success rounded-pill" href="{% url 'home' %}"> Noticias y eventos &raquo;</a>
+                </div>
+            </div>
+                
         </div>
     </div>
 </div>

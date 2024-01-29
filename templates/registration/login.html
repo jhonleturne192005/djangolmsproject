@@ -4,17 +4,17 @@
 {% block content %}
 
 <div id="login">
-  <div class="login-title blue-gradient"><i class="fas fa-lock"></i>Sign in</div>
+  <div class="login-title blue-gradient"><i class="fas fa-lock"></i>Iniciar sesión</div>
 
   <form action="" method="POST" id="login-form">{% csrf_token %}
     <div class="form-group px-3">
-        <label for="username_id"><i class="fas fa-address-card"></i>ID Number</label>
+        <label for="username_id"><i class="fas fa-address-card"></i>Usuario</label>
         <input type="text" name="username" id="username_id" class="form-control" required>
         <div id="message-wrapper"></div>
     </div>
 
     <div class="form-group px-3">
-      <label for="password_id"><i class="fas fa-key"></i>Password</label>
+      <label for="password_id"><i class="fas fa-key"></i>Contraseña</label>
       <div class="input-group">
         <input type="password" name="password" id="password_id" class="form-control" required>
         <div class="input-group-append">
@@ -25,13 +25,12 @@
       </div>
     </div>
     {% if form.errors %}
-          <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Invalid ID & Password.</span><br>
+          <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Usuario o contraseña incorrecta.</span><br>
     {% endif %}
 
-    <button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i><small> SIGN IN</small></button>
+    <button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i><small> Iniciar sesión</small></button>
   </form>
   <br>
-  <a href="{% url 'password_reset' %}" class="link">Forgot password ?</a>
   <br>
 
 </div>

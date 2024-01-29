@@ -656,8 +656,8 @@
     transition: 0.35s;
   }
   .active, .active a {
-    background: -o-linear-gradient(50deg,#45cafc,#303f9f);
-    background: linear-gradient(40deg,#45cafc,#303f9f);
+    background: -o-linear-gradient(50deg,#45cafc,#7ba62a);
+    background: linear-gradient(40deg,#45cafc,#78ba23);
     color: #fff!important;
     z-index: 1;
     transition: 0.5s;

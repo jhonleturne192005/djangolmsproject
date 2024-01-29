@@ -9,7 +9,7 @@
 
 			<form class="form-header" action="{% url 'query' %}" method="GET">
 				<input id="primary-search" class="au-input au-input--xl" type="text" name="q" value="{{ request.GET.q }}"
-					placeholder="Search All... #course, #program, #Quiz, #News, #Events" required />
+					placeholder="Buscar todos.... #Cursos, #Programas, #Evaluaciones, #Noticias, #Eventos" required />
 				<button class="au-btn--submit" type="submit">
 					<i class="fas fa-search"></i>
 				</button>
@@ -26,17 +26,15 @@
 						Last login: {{ request.user.last_login|date }}</p>
 
 					{% if request.user.is_lecturer or request.user.is_student %}
-					<a class="dropdown-item" href="{% url 'user_course_list' %}"><i class="fas fa-book"></i>My
-						Courses</a>
+					<a class="dropdown-item" href="{% url 'user_course_list' %}"><i class="fas fa-book"></i>Mis cursos</a>
 					{% endif %}
 
 					{% if request.user.is_superuser %}
-					<a class="dropdown-item" href="{% url 'admin_panel' %}"><i class="fas fa-user-tie"></i>Admin
-						Panel</a>
+					<a class="dropdown-item" href="{% url 'admin_panel' %}"><i class="fas fa-user-tie"></i>Panel de administrador</a>
 					{% endif %}
 
-					<a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i>Profile</a>
-					<a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="fas fa-cogs"></i>Setting</a>
+					<a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i>Perfil</a>
+					<a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="fas fa-cogs"></i>Configuraciones</a>
 					<form action="{% url 'set_language' %}" method="post">
 						{% csrf_token %}
 						<input name="next" type="hidden" value="{{ request.path }}">
@@ -48,7 +46,7 @@
 					<hr>
 					<div style="display: flex; justify-content: center; align-items: center;">
 						<a class="btn btn-secondary" href="{% url 'logout' %}">
-							<i class="fas fa-sign-out-alt"></i> Signout
+							<i class="fas fa-sign-out-alt"></i> Cerrar sesión 
 						</a>
 					</div>
 				</div>
