@@ -23,6 +23,16 @@ class CourseAddForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
+        labels = {
+            "title":  "titulo*",
+            "code": "codigo*",
+            "credit": "credito*",
+            "summary":  "Resumen*",
+            "program": "programa*",
+            "level": "nivel*",
+            "year": "anio*",
+            "semester": "semestre*",
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -36,6 +46,7 @@ class CourseAddForm(forms.ModelForm):
         self.fields['year'].widget.attrs.update({'class': 'form-control'})
         self.fields['semester'].widget.attrs.update({'class': 'form-control'})
 
+        
 
 class CourseAllocationForm(forms.ModelForm):
     courses = forms.ModelMultipleChoiceField(

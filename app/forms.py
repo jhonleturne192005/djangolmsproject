@@ -38,7 +38,7 @@ class SemesterForm(forms.ModelForm):
                 'class': 'browser-default custom-select',
             }
         ),
-        label="semester",
+        label="Semestre*",
     )
     is_current_semester = forms.CharField(
         widget=forms.Select(
@@ -47,7 +47,7 @@ class SemesterForm(forms.ModelForm):
                 'class': 'browser-default custom-select',
             }
         ),
-        label="is current semester ?",
+        label="Es el semestre actual ?",
     )
     session = forms.ModelChoiceField(
         queryset=Session.objects.all(),
