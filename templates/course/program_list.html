@@ -2,7 +2,7 @@
 {% block title %}{{ title }} | Learning management system{% endblock title %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> Programs</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Inicio</a> Programas</div>
 
 <div class="d-flex justify-content-between align-items-center">
     <div class="title-1">
@@ -12,7 +12,7 @@
     {% if request.user.is_superuser %}
     <div>
         <a class="btn btn-primary rounded-pill" href="{% url 'add_program' %}">
-            <i class="fas fa-plus"></i> Add Program
+            <i class="fas fa-plus"></i> Agregar programa
         </a>
     </div>
     {% endif %}
@@ -37,7 +37,7 @@
         <input class="au-input" type="text" name="program_filter" placeholder="Program name"
             value="{{ request.GET.program_filter }}" />
         <button class="btn btn-light" type="submit">
-            <i class="fas fa-search"></i> Filter
+            <i class="fas fa-search"></i> Filtro
         </button>
     </form>
 </div>
@@ -65,11 +65,11 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Program Name</th>
-                    <th>Summary</th>
-                    <th>Courses</th>
+                    <th>Nombre</th>
+                    <th>Resumen</th>
+                    <th>Cursos</th>
                     {% if request.user.is_superuser %}
-                    <th>Action</th>
+                    <th>Acciones</th>
                     {% endif %}
                 </tr>
             </thead>
@@ -81,7 +81,7 @@
                             {{ program.title}}</a></td>
                     <td>{{ program.summary }} </td>
                     <td>
-                        <a class="btn btn-primary rounded-pill text-light" href="{{ program.get_absolute_url }}">Cursos</a>
+                        <a class="btn btn-outline-primary rounded-pill text-orange" href="{{ program.get_absolute_url }}">Cursos</a>
                     </td>
                     {% if request.user.is_superuser %}
                     
@@ -100,21 +100,17 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <p class="p-4">
-                                        Are you sure you want to delete this program?
+                                        Estas seguro de eliminar el programa seleccionado?
                                     </p>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
+                                            data-dismiss="modal">Cerrar</button>
                                         <a class="btn btn-danger"
-                                            href="{% url 'program_delete' pk=program.pk %}">Delete</a>
+                                            href="{% url 'program_delete' pk=program.pk %}">Eliminar</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- <td> <div class="update-delete">
-                    <a href="{% url 'edit_program' pk=program.pk %}" class="update"><i class="fas fa-edit"></i></a> 
-                    <a href="{% url 'program_delete' pk=program.pk %}" class="delete"><i class="fas fa-trash-alt"></i></a>
-                    </div> -->
                     </td>
                     {% endif %}
                 </tr>
@@ -124,11 +120,11 @@
                   <td></td>
                   <td>
                   <span class="text-danger">
-                    No program.
+                    No existen programas registrados.
                     {% if request.user.is_superuser %}
                     <a href="{% url 'add_program' %}">
                     <i class="primary" style="font-size: 22px;">
-                       Add program now.
+                       Agrega un programa ahora.
                     </i>
                     {% endif %}
                     </a>
