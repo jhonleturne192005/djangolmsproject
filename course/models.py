@@ -41,7 +41,7 @@ SEMESTER = (
 
 class ProgramManager(models.Manager):
     def search(self, query=None):
-        qs = self.get_queryset()
+        qs = self.get_queryset().order_by('-id')
         if query is not None:
             or_lookup = (Q(title__icontains=query) | 
                          Q(summary__icontains=query)
@@ -61,7 +61,8 @@ class Program(models.Model):
 
     def get_absolute_url(self):
         return reverse('program_detail', kwargs={'pk': self.pk})
-
+    class Meta:
+        ordering = ['-id']
 
 class CourseManager(models.Manager):
     def search(self, query=None):

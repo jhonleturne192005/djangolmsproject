@@ -4,29 +4,34 @@
 
 {% block content %}
 
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a>
-    <a href="{% url 'programs' %}" class="primary1">Programs</a> {{ program.title }}
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Inicio</a>
+    <a href="{% url 'programs' %}" class="primary1">Programas</a> {{ program.title }}
 </div>
 
-{% if request.user.is_superuser %}
-<div class="manage-wrap">
-    <a class="btn btn-sm btn-primary" href="{% url 'course_add' pk=program.pk %}"><i class="fas fa-plus"></i>Add
-        Course</a>
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <div class="title-1">{{ program.title }}</div>
+
+    {% if request.user.is_superuser %}
+    <div>
+        <a class="btn btn-sm btn-primary rounded-pill" href="{% url 'course_add' pk=program.pk %}">
+            <i class="fas fa-plus"></i> Agregar curso
+        </a>
+    </div>
+    {% endif %}
 </div>
-{% endif %}
 
 
 {% if program %}
-<div class="title-1">{{ program.title }}</div>
 {% if program.summary %}
-<p class="program-description">{{ program.summary }}</p>
+<p class="program-description rounded shadow p-3">{{ program.summary }}</p>
 {% endif %}
 {% endif %}
 
 {% if messages %}
 {% for message in messages %}
 {% if message.tags == 'error' %}
-<div class="alert alert-danger">
+<div class="alert alert-{{ message.tags }} rounded shadow-sm">
     <i class="fas fa-exclamation-circle"></i>{{ message }}
 </div>
 {% else %}
@@ -37,32 +42,36 @@
 {% endfor %}
 {% endif %}
 
-<div class="content-center">
+<div class="content-center rounded shadow-sm p-3 mb-5">
     <form class="search-form" action="." method="GET">
-        <input class="au-input" type="text" name="name" placeholder="Course Name" value="{{ request.GET.name }}" />
-        <input class="au-input" type="text" name="code" placeholder="Course Code" value="{{ request.GET.code }}" />
-        <input class="au-input" type="number" name="year" placeholder="Course Year" value="{{ request.GET.year }}" />
-        <button class="btn btn-light" type="submit">
-            <i class="fas fa-search"></i> filter
+        <div class="form-row">
+            <input class="au-input" type="text" name="name" placeholder="Nombre del curso" value="{{ request.GET.name }}" />
+            <input class="au-input" type="text" name="code" placeholder="Codigo del curso" value="{{ request.GET.code }}" />
+            <input class="au-input" type="number" name="year" placeholder="Años del curso" value="{{ request.GET.year }}" />    
+        </div>
+        
+        <button class="btn btn-primary rounded-pill" type="submit">
+            <i class="fas fa-search"></i> Filtrar
         </button>
     </form>
 </div>
 
 <div class="table-responsive p-0 px-2 mt-5">
     <div class="table-shadow">
-        <table class="table table-light table-striped">
+        <table class="table table-light table-striped rounded shadow-sm">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th> Course Name </th>
-                    <th> Course Code </th>
-                    <th> Cr.Hr </th>
-                    <th> Level </th>
-                    <th> Year </th>
-                    <th> Semester </th>
-                    <th> Current Semester </th>
+                    <th> Nombre </th>
+                    <th> Codigo </th>
+                    <th> Creditos </th>
+                    <th> Nivel </th>
+                    <th> Años </th>
+                    <th> Semestre </th>
+                    <th> Semestre actual </th>                    
+                    <th>Ir al curso</th>
                     {% if request.user.is_superuser %}
-                    <th>Action</th>
+                    <th>Acciones</th>
                     {% endif %}
                 </tr>
             </thead>
@@ -84,6 +93,11 @@
                         <i class="fas fa-check-circle fa-1-5x"></i>
                         {% endif %}
                     </th>
+                    <td>
+                        <a class="btn btn-outline-primary rounded-pill text-orange" href="{{ course.get_absolute_url }}">
+                            <i class="fas fa-graduation-cap"></i>Ir al Curso
+                        </a>
+                    </td>
                     {% if request.user.is_superuser %}
                     <td>
                         <div class="dropdown">
@@ -91,16 +105,17 @@
                                 aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-ellipsis-v"></i>
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu dropdown-menu-right rounded-lg" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="{% url 'edit_course' slug=course.slug %}">
-                                    <i class="fas fa-pencil-alt"></i> Edit
+                                    <i class="fas fa-pencil-alt "></i> Editar
                                 </a>
                                 <a class="dropdown-item" href="{% url 'delete_course' slug=course.slug %}">
-                                    <i class="fas fa-trash-alt"></i> Delete
+                                    <i class="fas fa-trash-alt"></i> Eliminar
                                 </a>
                             </div>
                         </div>
                     </td>
+                    
                     {% endif %}
                 </tr>
                 {% endfor %}
@@ -111,17 +126,20 @@
 
 {% if courses.paginator.page_range|length > 1 %}
 <div class="content-center">
-    <div class="pagination">
-        <a href="?page=1">&laquo;</a>
-        {% for i in courses.paginator.page_range %}
-        {% if i == courses.number %}
-        <a class="pagination-active" href="?page={{ i }}"><b>{{ i }}</b></a>
-        {% else %}
-        <a href="?page={{ i }}">{{ i }}</a>
-        {% endif %}
-        {% endfor %}
-        <a href="?page={{ courses.paginator.num_pages }}">&raquo;</a>
-    </div>
+    <nav aria-label="Page navigation">
+        <div class="pagination justify-content-center">
+            <a href="?page=1">&laquo;</a>
+            {% for i in courses.paginator.page_range %}
+            {% if i == courses.number %}
+            <a class="pagination-active" href="?page={{ i }}"><b>{{ i }}</b></a>
+            {% else %}
+            <a href="?page={{ i }}">{{ i }}</a>
+            {% endif %}
+            {% endfor %}
+            <a href="?page={{ courses.paginator.num_pages }}">&raquo;</a>
+        </div>
+    </nav>
+    
 </div>
 {% endif %}
 

@@ -9,13 +9,16 @@ class NewsAndEventsForm(forms.ModelForm):
     class Meta:
         model = NewsAndEvents
         fields = ('title', 'summary', 'posted_as',)
-
+        labels = {
+            "title":  "Titulo",
+            "summary":  "Resumen*",
+            "posted_as": "Tipo",
+        }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['title'].widget.attrs.update({'class': 'form-control'})
         self.fields['summary'].widget.attrs.update({'class': 'form-control'})
         self.fields['posted_as'].widget.attrs.update({'class': 'form-control'})
-
 
 class SessionForm(forms.ModelForm):
     next_session_begins = forms.DateTimeField(
@@ -39,7 +42,7 @@ class SemesterForm(forms.ModelForm):
                 'class': 'browser-default custom-select',
             }
         ),
-        label="semester",
+        label="Semestre*",
     )
     is_current_semester = forms.CharField(
         widget=forms.Select(
@@ -48,7 +51,7 @@ class SemesterForm(forms.ModelForm):
                 'class': 'browser-default custom-select',
             }
         ),
-        label="is current semester ?",
+        label="Es el semestre actual ?",
     )
     session = forms.ModelChoiceField(
         queryset=Session.objects.all(),
@@ -72,3 +75,9 @@ class SemesterForm(forms.ModelForm):
     class Meta:
         model = Semester
         fields = ['semester', 'is_current_semester', 'session', 'next_semester_begins']
+        labels = {
+            "semester":  "Semestre",
+            "is_current_semester": "Es semestre actual",
+            "session": "Sesión",
+            "next_semester_begins":  "Siguiente semestre comienza",
+        }

@@ -971,12 +971,12 @@ hr {
 }
 
 #side-nav ul li a:hover {
-  color: #007bff;
+  color: #ffa600;
   background: rgba(0, 111, 255, 0.05);
 }
 
 #side-nav ul li.active a {
-  background: #006fff;
+  background: #15a921;
   color: #fff;
 }
 
@@ -984,6 +984,16 @@ hr {
   -webkit-box-shadow: 0px 0px 0px 0px #dbdbdb;
           box-shadow: 0px 0px 0px 0px #dbdbdb;
   left: -300px;
+}
+
+.btn-pastel-green {
+  background-color: #77d69e; /* Ajusta este valor al color exacto de verde pastel que deseas */
+  border-color: #77d69e;
+}
+
+.btn-pastel-green:hover {
+  background-color: #69c28f; /* Un tono ligeramente más oscuro para el efecto hover */
+  border-color: #69c28f;
 }
 
 @media screen and (max-width: 1150px) {
@@ -1334,7 +1344,7 @@ a {
 .pagination-active,
 .pagination > a:focus {
   color: #fff;
-  background: #5c6ac4;
+  background: #23da35;
 }
 
 .btn i {

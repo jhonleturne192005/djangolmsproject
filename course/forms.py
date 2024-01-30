@@ -12,6 +12,10 @@ class ProgramForm(forms.ModelForm):
     class Meta:
         model = Program
         fields = '__all__'
+        labels={
+            "title":"Titulo",
+            "summary":"Resumen"
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -23,6 +27,16 @@ class CourseAddForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = '__all__'
+        labels = {
+            "title":  "titulo*",
+            "code": "codigo*",
+            "credit": "credito*",
+            "summary":  "Resumen*",
+            "program": "programa*",
+            "level": "nivel*",
+            "year": "anio*",
+            "semester": "semestre*",
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -36,6 +50,7 @@ class CourseAddForm(forms.ModelForm):
         self.fields['year'].widget.attrs.update({'class': 'form-control'})
         self.fields['semester'].widget.attrs.update({'class': 'form-control'})
 
+        
 
 class CourseAllocationForm(forms.ModelForm):
     courses = forms.ModelMultipleChoiceField(
@@ -46,7 +61,7 @@ class CourseAllocationForm(forms.ModelForm):
     lecturer = forms.ModelChoiceField(
         queryset=User.objects.filter(is_lecturer=True),
         widget=forms.Select(attrs={'class': 'browser-default custom-select'}),
-        label="lecturer",
+        label="Instructor",
     )
 
     class Meta:
@@ -68,7 +83,7 @@ class EditCourseAllocationForm(forms.ModelForm):
     lecturer = forms.ModelChoiceField(
         queryset=User.objects.filter(is_lecturer=True),
         widget=forms.Select(attrs={'class': 'browser-default custom-select'}),
-        label="lecturer",
+        label="Instructor",
     )
 
     class Meta:
@@ -86,6 +101,11 @@ class UploadFormFile(forms.ModelForm):
     class Meta:
         model = Upload
         fields = ('title', 'file', 'course',)
+        labels={
+            "title":"Titulo",
+            "file":"Archivo",
+            "course":"Curso"
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -98,7 +118,11 @@ class UploadFormVideo(forms.ModelForm):
     class Meta:
         model = UploadVideo
         fields = ('title', 'video', 'course',)
-
+        labels={
+            "title":"Titulo",
+            "video":"Video",
+            "course":"Curso"
+        }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['title'].widget.attrs.update({'class': 'form-control'})
