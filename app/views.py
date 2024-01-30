@@ -170,6 +170,8 @@ def semester_list_view(request):
     return render(request, 'app/semester_list.html', {"semesters": semesters, })
 
 
+
+
 @login_required
 @lecturer_required
 def semester_add_view(request):
@@ -213,7 +215,54 @@ def semester_add_view(request):
             return redirect('semester_list')
     else:
         form = SemesterForm()
-    return render(request, 'app/semester_update.html', {'form': form})
+        formsession=SessionForm()
+    print("ya llege aqui")
+    form = SemesterForm()
+    formsession=SessionForm()
+    return render(request, 'app/semester_update.html', {'form': form,'sessionform':formsession})
+
+
+
+#nuevoooo
+@login_required
+@lecturer_required
+def session_add_view_new_flash(request):
+    """ check request method, if POST we add session otherwise show empty form """
+    print("holaaaaaaaaaaaa")
+    if request.method == 'POST':
+        form = SessionForm(request.POST)
+        print("setsooooooooo")
+        if form.is_valid():
+            data = form.data.get('is_current_session')  
+            if data == 'true':
+                sessions = Session.objects.all()
+                if sessions:
+                    for session in sessions:
+                        if session.is_current_session == True:
+                            unset = Session.objects.get(is_current_session=True)
+                            unset.is_current_session = False
+                            unset.save()
+                    form.save()
+                else:
+                    form.save()
+            else:
+                form.save()
+           
+        else:       
+            return render(request, 'app/sessionhtmx.html',{"sessionform":form})
+        return render(request, 'app/sessionhtmx.html',{"sessionform":form})
+    else:
+        print("es get")
+
+
+
+
+
+
+
+
+
+
 
 
 @login_required

@@ -1,0 +1,10 @@
+
+{% load crispy_forms_tags %}
+
+<form action="" method="">
+    {{ sessionform|crispy }}
+    <input class="btn btn-primary" type="Button" value="Save" 
+                        hx-post= "{% url 'add_semestersession' %}"
+                        hx-trigger="click"
+                        hx-target="#sessionformnew">
+</form>

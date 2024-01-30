@@ -1,0 +1,6 @@
+
+
+<form action="" method="POST">{% csrf_token %}
+    {% for f in form %}{{ f.label }}{{ f }}<hr>{% endfor %}
+    <input class="btn btn-primary" type="submit" value="Save">
+</form>
