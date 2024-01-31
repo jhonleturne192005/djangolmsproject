@@ -4,10 +4,10 @@
 {% load static %}
 
 {% block content %}
-<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> 
-    <a href="{% url 'lecturer_list' %}" class="primary1">Lecturers</a> <i>&rsaquo;</i> Add</div>
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Inicio</a> <i>&rsaquo;</i> 
+    <a href="{% url 'lecturer_list' %}" class="primary1">Instructores</a> <i>&rsaquo;</i> Agregar</div>
 <br>
-<div class="title-1"><i class="fas fa-chalkboard-teacher"></i>Lecturer Add Form</div>
+<div class="title-1"><i class="fas fa-chalkboard-teacher"></i>Formulario de registro de Instructores</div>
 <div class="title-line"></div><br>
 
 {% if messages %}
@@ -25,18 +25,18 @@
 {% endif %}
 
 <form action="" method="POST">{% csrf_token %}
-    <div class="row mb-3">
+    <div class="row  mb-4">
         <div class="col-md-6">
             <div class="card">
-                <p class="form-title">Login Info</p>
+                <p class="form-title">Información de Login</p>
                 <div class="p-2">
                     <div class="form-group">
-                        <b>ID No.</b>{{ form.username }}
+                        <b>Usuario*</b>{{ form.username }}
                         <span class="danger">{{ form.username.errors }}</span>
-                        <p class="text-muted-xs">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+                        <p class="text-muted-xs">El usuario debera contener Letras, numeros y caracteres especiales como estos @/./+/-/_ .</p>
                     </div>
                     <div class="form-group">
-                        <b>{{ form.password1.label }}</b>
+                        <b>Contraseña*</b>
                         <div class="input-group">
                             {{ form.password1 }}
                             <div class="input-group-append">
@@ -47,14 +47,14 @@
                         </div>
                         <span class="danger">{{ form.password1.errors }}</span>
                         <p class="text-muted-xs">
-                            The password can't be too similar to other personal information.<br>
-                            The password must contain at least 8 characters.<br>
-                            The password can't be a commonly used password.<br>
-                            The password can't be entirely numeric.
+                            La contraseña no debera ser igual a otra informacion personal<br>
+                            La contraseña debera tener minimo 8 caracteres<br>
+                            La contraseña no debe ser muy comun ejm:(1234)<br>
+                            La contraseña no debera ser solo numerica.
                         </p>
                     </div>
                     <div class="form-group">
-                        <b>{{ form.password2.label }}</b>
+                        <b>Confirmar contraseña*</b>
                         <div class="input-group">
                             {{ form.password2 }}
                             <div class="input-group-append">
@@ -64,40 +64,40 @@
                             </div>
                         </div>
                         <span class="danger">{{ form.password2.errors }}</span>
-                        <p class="text-muted-xs">Enter the same password as before, for verification.</p>
+                        <p class="text-muted-xs">Ingrese la contraseña para realizar la verificación</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card">
-                <p class="form-title">Personal Info</p>
+                <p class="form-title">Informacion Personal</p>
                 <div class="p-2">
                     <div class="form-group">
-                        <b>{{ form.first_name.label }}</b>{{ form.first_name }}
+                        <b>Nombre*</b>{{ form.first_name }}
                         <span class="danger">{{ form.first_name.errors }}</span>
                     </div>
                     <div class="form-group">
-                        <b>{{ form.last_name.label }}</b>{{ form.last_name }}
+                        <b>Apellido*</b>{{ form.last_name }}
                         <span class="danger">{{ form.last_name.errors }}</span>
                     </div>
                     <div class="form-group">
-                        <b>{{ form.email.label }}</b>{{ form.email }}
+                        <b>Email*</b>{{ form.email }}
                         <span class="danger">{{ form.email.errors }}</span>
                     </div>
                     <div class="form-group">
-                        <b>{{ form.address.label }}</b>{{ form.address }}
+                        <b>Dirección*</b>{{ form.address }}
                         <span class="danger">{{ form.address.errors }}</span>
                     </div>
                     <div class="form-group">
-                        <b>{{ form.phone.label }}</b>{{ form.phone }}
+                        <b>Telefono*</b>{{ form.phone }}
                         <span class="danger">{{ form.phone.errors }}</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <center> <button type="submit" class="btn btn-primary">Save</button></center>
+    <center> <button type="submit" class="btn btn-outline-primary rounded-pill"><i class="fas fa-save"></i>guardar</button></center>
 </form>
 
 {% endblock content %}
