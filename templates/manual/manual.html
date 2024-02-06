@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+{% load static %}
+
+
+
+{% block content %}
+<div class="container">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Noticias & Eventos
+            </button>
+          </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                        <p class="h1">Noticias & Eventos</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                        En este apartado se podra observar todas las noticias y eventos que esten 
+                        disponible como la creación de un nuevo curso o nuevas funcionalidades del software.
+                        <img src="{% static 'img/manual/noticias.PNG' %}" class="img-fluid m-5" alt="..."  width="800" height="800">
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+
+
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Perfil
+            </button>
+          </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                    <p class="h1">Perfil</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                        En este apartado se podra ver todos los datos del usuario dueño de la cuenta aparte de esto tambien
+                        tendra la opcion de editar perfil.
+                        <img src="{% static 'img/manual/perfil.PNG' %}" class="img-fluid m-5" alt="..."  width="800" height="800">
+                    </div> 
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Mis cursos
+            </button>
+          </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                    <p class="h1">Mis cursos</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                        En este apartado se podraobservar todos los cursos que actualmente esta cruzando el usuario.
+                        <img src="{% static 'img/manual/miscursos.PNG' %}" class="img-fluid m-5" alt="..."  width="800" height="800">
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Programas & Cursos
+            </button>
+          </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                    <p class="h1">Programas & Cursos</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                        En este apartado se mostraran todos los programas que estan activos.En esta tambien se muestra un boton en el 
+                        cual se podran ver todos los cursos que pertenecen a ese programa.
+                        <img src="{% static 'img/manual/cursosondos.PNG' %}" class="img-fluid m-5" alt="..."  width="800" height="800">
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Progreso de evaluación
+            </button>
+          </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                    <p class="h1">Progreso de evaluación</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                        En este apartado se observara todo el progreso de las evaluaciones que el estudiante ha tomado.
+                        <img src="{% static 'img/manual/progreso.PNG' %}" class="img-fluid m-5" alt="..."  width="800" height="800">
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                Resultado de calificaciones
+            </button>
+          </h2>
+        <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                    <p class="h1">Resultado de calificaciones</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                        En este apartado se observara todo el resultado de los curso deacuerdo a las notas del estudiante.
+                        <img src="{% static 'img/manual/calificacion.PNG' %}" class="img-fluid m-5" alt="..."  width="800" height="800">
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                Resultado de evaluaciones
+            </button>
+          </h2>
+        <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                    <p class="h1">Resultado de evaluaciones</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                        En este apartado se observara todo el resultado de las evaluaciones que el estudiante ha rendido durante el transcurso del curso.
+                        <img src="{% static 'img/manual/resulevaluacion.PNG' %}" class="img-fluid m-5" alt="..."  width="800" height="800">
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                Configuraciones de la cuenta
+            </button>
+          </h2>
+        <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                    <p class="h1">Configuraciones de la cuenta</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                        En este apartado se piodra configurar la cuenta o rellenar campos que ahun estavan vacios. ademas de tambien poder agregar un foto de perfil para la cuenta.
+                        <img src="{% static 'img/manual/informacionperfil.PNG' %}" class="img-fluid m-5" alt="..."  width="800" height="800">
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                Cambiar contraseña
+            </button>
+          </h2>
+        <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                    <p class="h1">Cambiar contraseña</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm w-100 text-center">
+                        En este apartado se podra cambiar la cuenta de cada usuario si lo desea. en la cual le pedira ingresar la contraseña antigua, y la actual para con ello proceder al cambio.
+                        <img src="{% static 'img/manual/changepassword.PNG' %}" class="img-fluid m-5" alt="..."  width="800" height="800">
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

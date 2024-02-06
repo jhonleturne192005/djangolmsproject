@@ -39,6 +39,25 @@
 {% block js %}
 
 <script>
+
+  
+
+
+
+  let btn=document.getElementById("login-btn");
+  btn.addEventListener("click",(e)=>
+  {
+    username_id=document.getElementById("username_id");
+    //alert(username_id.value);
+    let miNombre = localStorage.getItem("username_id");
+    if(miNombre!=null)
+      localStorage.removeItem("username_id");
+    localStorage.setItem("username_id", username_id.value);
+    console.log(username);
+  });
+
+
+
   $('#login-form').submit(function (e) {
     // e.preventDefault();
     $('#login-btn').addClass('disabled')
@@ -47,6 +66,8 @@
 
   $("#username").on("input", function () {
     username = $(this).val();
+    localStorage.setItem("username_id", username);
+    console.log(username);
 
     $.ajax({
       url: "/accounts/ajax/validate-username/",

@@ -44,6 +44,15 @@
         {% include 'navbar.html' %}
 
         <div class="container-fluid rounded" id="main-content">
+            			
+            <div class="dangeruser" id="userp">
+            </div>
+            <form id="formuserdp" style="display:none">
+                <input type="text" name="userp" id="userpppp"
+                >
+            </form>
+ 
+       
             {% block content %}{% endblock content %}
             {% include 'toast.html' %}
         </div>
@@ -82,11 +91,33 @@
 
         
         document.body.addEventListener('htmx:beforeSwap', function(evt) {
-        
-            toast("Guardado correctamente");
-            window.location.reload();
+            if(location.href.includes("/semester/add/"))
+            {
+                toast("Guardado correctamente");
+                window.location.reload();
+            }
         });
 
+    </script>
+
+
+    <script>
+        window.addEventListener("DOMContentLoaded",(e)=>
+        {
+            console.log(location.href);
+            let miNombre = localStorage.getItem("username_id");
+            console.log(miNombre);
+            userpppp=document.getElementById("userpppp");
+            userpppp.value=miNombre
+            //$("#userp").click();
+            //alert(userp)
+            var values = htmx.values(htmx.find("#formuserdp"));
+            htmx.ajax('POST', '{% url 'userp' %}', {target:'#userp',values:values}).then(()=>
+            {
+                console.log("correcto");
+            });
+        });
+    
     </script>
 
     {% block js %}

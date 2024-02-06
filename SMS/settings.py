@@ -114,7 +114,8 @@ DATABASES = {
         "PORT": env("DB_PORT"),
     }
 }
-
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://1f4f-131-196-60-9.ngrok-free.app']
 # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

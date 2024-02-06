@@ -14,13 +14,38 @@ from django.contrib.auth.forms import (
     PasswordChangeForm,
     
 )
-
+from django.contrib.auth.models import User
 from .decorators import lecturer_required, student_required, admin_required
 from course.models import Course
 from result.models import TakenCourse
 from app.models import Session, Semester
 from .forms import StaffAddForm, StudentAddForm, ProfileUpdateForm, ParentAddForm, SuperuserCreationForm
 from .models import User, Student, Parent
+
+
+def manual(request):
+    if request.method == "GET":
+        return render(request, "manual/manual.html")
+
+
+
+def userp(request):
+    if request.method == "POST":
+        print(request.POST)
+        print(request.POST.get("userp")," nombreeeeeeeeeeeeee")
+        g=User.objects.get(username=request.POST.get("userp"))
+        print(g.address," no tiene email")
+        if g.first_name=="" or g.last_name=="" or g.phone=="" or g.address=="" or g.picture=="" or g.email=="":
+            
+            print(g.email=="")
+            print("siiiiiiiiiiii")
+            return render(request, "alerts/alerta.html", {"is_active": True})
+        else:
+            print("noooooooooooo")
+            return render(request, "alerts/alerta.html", {"is_active": False})
+    
+
+
 
 
 def validate_username(request):

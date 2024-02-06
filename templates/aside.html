@@ -102,6 +102,9 @@
 
 			{% if request.user.is_student %}
 			<li class="{% if request.path == qpr %}active{% endif %}">
+				<a href="{% url 'manual' %}"><i class="fas fa-record-vinyl"></i>Manual</a>
+			</li>
+			<li class="{% if request.path == qpr %}active{% endif %}">
 				<a href="{% url 'quiz_progress' %}"><i class="fas fa-record-vinyl"></i>Progreso de evaluacion</a>
 			</li>
 			<li class="{% if request.path == vr %}active{% endif %}">
